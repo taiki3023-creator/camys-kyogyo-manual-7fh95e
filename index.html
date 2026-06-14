@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>協業先開拓マニュアル（担当者が一人で回せる実務版）</title>
+<style>
+  :root{
+    --navy:#1e3a5f; --cyan:#06b6d4;
+    --grad:linear-gradient(135deg,#1e3a5f 0%,#06b6d4 100%);
+    --grad-rev:linear-gradient(135deg,#06b6d4 0%,#1e3a5f 100%);
+    --ink:#1f2937; --sub:#5b6573; --line:#e5e9f0; --grey:#f4f6fa;
+    --warn:#b42318; --ok:#067647;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Noto Sans JP","Inter",sans-serif;color:var(--ink);line-height:1.85;background:#fff}
+  .wrap{max-width:940px;margin:0 auto;padding:0 22px}
+  section{padding:60px 0}
+  .sec-grey{background:var(--grey)}
+  .sec-grad{background:var(--grad);color:#fff}
+  .sec-grad-rev{background:var(--grad-rev);color:#fff}
+  h2{font-size:26px;font-weight:800;letter-spacing:.02em;margin-bottom:6px}
+  .sec-grad h2,.sec-grad-rev h2{color:#fff}
+  .step-no{display:inline-block;font-size:12px;font-weight:800;color:var(--cyan);letter-spacing:.14em;margin-bottom:6px}
+  .sec-grad .step-no,.sec-grad-rev .step-no{color:#bff0ff}
+  .lead{color:var(--sub);font-size:15px;margin-bottom:24px}
+  .sec-grad .lead,.sec-grad-rev .lead{color:rgba(255,255,255,.85)}
+  h3{font-size:17px;font-weight:800;margin:18px 0 8px}
+  p{font-size:15px;margin-bottom:8px}
+  ul,ol{padding-left:20px;margin-bottom:8px}
+  li{font-size:14.5px;margin:4px 0}
+  b,strong{color:var(--navy)}
+  .sec-grad b,.sec-grad-rev b{color:#fff}
+
+  /* hero */
+  .hero{background:var(--grad);color:#fff;padding:74px 0 60px}
+  .hero .tag{display:inline-block;font-size:12px;letter-spacing:.14em;border:1px solid rgba(255,255,255,.5);border-radius:999px;padding:5px 14px;margin-bottom:18px}
+  .hero h1{font-size:32px;font-weight:800;line-height:1.4;margin-bottom:14px;color:#fff}
+  .hero p{font-size:16px;color:rgba(255,255,255,.9);max-width:720px}
+  .hero .ver{margin-top:20px;font-size:12px;color:rgba(255,255,255,.7)}
+
+  /* cards */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:6px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:0 6px 18px rgba(30,58,95,.06)}
+  .card .n{font-size:12px;font-weight:800;color:var(--cyan);letter-spacing:.1em;margin-bottom:6px}
+  .card h4{font-size:15px;font-weight:800;margin-bottom:6px;color:var(--navy)}
+  .card p{font-size:13.5px;color:var(--sub);margin:0}
+
+  /* roles */
+  .roles{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px}
+  .role{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:0 6px 18px rgba(30,58,95,.06)}
+  .role .chip{display:inline-block;font-size:12px;font-weight:800;color:#fff;border-radius:999px;padding:3px 12px;margin-bottom:8px}
+  .role.you .chip{background:var(--cyan)}
+  .role.boss .chip{background:var(--navy)}
+  .role.partner .chip{background:#7c8aa0}
+
+  /* table */
+  table{width:100%;border-collapse:collapse;margin:8px 0 4px;font-size:14px;background:#fff}
+  th,td{padding:9px 10px;border:1px solid var(--line);text-align:left;vertical-align:top}
+  th{background:#eef6fb;color:var(--navy);font-weight:700;font-size:13px}
+  .sec-grad table,.sec-grad-rev table{background:rgba(255,255,255,.96);color:var(--ink)}
+
+  /* flow */
+  .flow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:6px}
+  .flow .step{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:14px 14px}
+  .flow .step .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:50%;background:#fff;color:var(--navy);font-weight:800;margin-bottom:6px;font-size:14px}
+  .flow .step b{display:block;font-size:14px;color:#fff;margin-bottom:2px}
+  .flow .step span{display:block;font-size:11px;color:rgba(255,255,255,.78)}
+
+  /* talk */
+  .talk{background:var(--grey);border-left:3px solid var(--cyan);border-radius:8px;padding:10px 14px;font-size:14px;color:#374151;margin:6px 0}
+  .talk .role-k{display:block;font-size:12px;font-weight:800;color:var(--navy);margin-bottom:2px}
+
+  /* copy block */
+  .copy{background:#0f1b2d;color:#e7eef6;border-radius:12px;padding:18px 20px;font-size:13px;line-height:1.85;white-space:pre-wrap;margin:8px 0;font-family:"Noto Sans JP",monospace}
+  .copy .cap{display:block;font-size:11px;letter-spacing:.1em;color:#5fd3ec;margin-bottom:8px;font-weight:800}
+
+  /* judge two col */
+  .judge{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px}
+  .judge .col{background:#fff;border-radius:14px;padding:20px;box-shadow:0 6px 18px rgba(30,58,95,.06)}
+  .judge .col.ng{border-top:5px solid var(--warn)}
+  .judge .col.up{border-top:5px solid var(--ok)}
+  .judge .col h4{font-size:16px;font-weight:800;margin-bottom:4px}
+  .judge .col.ng h4{color:var(--warn)}
+  .judge .col.up h4{color:var(--ok)}
+  .judge .col .s{font-size:12.5px;color:var(--sub);margin-bottom:8px}
+
+  /* ng cards */
+  .nglist{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+  .ngcard{background:#fff;border:1px solid var(--line);border-left:4px solid var(--warn);border-radius:10px;padding:15px 16px}
+  .ngcard b{display:block;color:var(--warn);font-size:14px;margin-bottom:4px}
+  .ngcard p{font-size:13px;color:var(--ink);margin:0}
+  .ngcard .fix{display:block;font-size:12.5px;color:var(--ok);margin-top:6px}
+
+  .pill{display:inline-block;background:#eef6fb;color:var(--navy);border-radius:999px;font-size:12px;font-weight:700;padding:4px 12px;margin:3px 4px 3px 0}
+  .note{font-size:13px;color:var(--sub);margin-top:8px}
+  .rule{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-top:8px}
+  .key{background:#fffaf0;border:1px solid #f3e2c0;border-radius:10px;padding:12px 16px;margin:10px 0;font-size:14px}
+  .key b{color:#b45309}
+
+  /* anchor nav */
+  .anchor-nav{position:sticky;top:0;z-index:9;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(6px)}
+  .anchor-nav .wrap{display:flex;gap:6px;flex-wrap:wrap;padding:9px 22px}
+  .anchor-nav a{font-size:12px;color:var(--navy);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:4px 11px}
+  .anchor-nav a:hover{background:var(--grad);color:#fff;border-color:transparent}
+
+  .foot{text-align:center;font-size:12px;color:var(--sub);padding:28px 0}
+  @media(max-width:760px){
+    .cards,.roles,.judge,.nglist{grid-template-columns:1fr}
+    .flow{grid-template-columns:1fr 1fr}
+    .hero h1{font-size:25px}
+    h2{font-size:21px}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="tag">Camy's 営業チーム / 実務マニュアル v1</span>
+    <h1>協業先開拓マニュアル<br>実績を持つ運用パートナーと組み、その営業をCamy'sが代行する</h1>
+    <p>一般企業に強い運用パートナーと業務提携し、その営業をCamy'sが肩代わりして案件を取る。運用はパートナー、営業はCamy's。仲介料20%で稼ぎ、制作を抱えずに横展開する。このマニュアルは、taikiがいなくても担当者が一人で「募集→面談→契約→営業」を回せるようにまとめたもの。</p>
+    <div class="ver">2026-06-15 作成 / 1社目の実例＝株式会社メディアスタンド（採用系SNS運用）</div>
+  </div>
+</header>
+
+<nav class="anchor-nav">
+  <div class="wrap">
+    <a href="#p1">1 目的</a>
+    <a href="#p2">2 役割分担</a>
+    <a href="#flow">全体フロー</a>
+    <a href="#p3">3 募集</a>
+    <a href="#p4">4 面談を組む</a>
+    <a href="#p5">5 説明トーク</a>
+    <a href="#p6">6 実績ヒア</a>
+    <a href="#p7">7 単価ヒア</a>
+    <a href="#p8">8 すり合わせ</a>
+    <a href="#p9">9 契約</a>
+    <a href="#p10">10 営業</a>
+    <a href="#p11">11 見極め</a>
+    <a href="#p12">12 無料撮影</a>
+    <a href="#p13">13 NG集</a>
+  </div>
+</nav>
+
+<!-- 1 -->
+<section id="p1">
+  <div class="wrap">
+    <span class="step-no">PART 1</span>
+    <h2>このスキームの目的・狙い</h2>
+    <p class="lead">「実績がない／制作の手が足りない」を、提携で一気に解決する。</p>
+
+    <h3>発端（なぜ始めたか）</h3>
+    <p>Camy'sは<b>ナイトワーク系の実績しかなく、一般企業相手の商売がしづらい</b>という課題があった。そこで、<b>一般企業に強い運用パートナーと業務提携し、その営業を代行すれば win-win になる</b>と考えた。さらに<b>社内の制作リソースを使わない</b>ので、制作メンバーを一般企業向けに育てる「教育フェーズ」をすっ飛ばして、いきなり一般企業の案件を取りにいける。</p>
+
+    <h3>狙い</h3>
+    <ol>
+      <li><b>社内の制作リソースを使わず</b>、一般企業の案件を取れる（制作はパートナー任せ）</li>
+      <li>ナイトワーク以外の<b>「一般企業の実績」を作れる</b></li>
+      <li>一般企業運用の<b>ノウハウがたまる</b></li>
+      <li>その実績・ノウハウは、将来<b>社内制作チームの教育にも活かせる</b></li>
+      <li>【最終形】営業も<b>営業代行</b>に任せ、営業代行が提携先の案件を取ってくる形にする → Camy'sは<b>自前の制作部隊を持たずに回せる</b></li>
+    </ol>
+
+    <div class="key"><b>利益：</b>仲介料20%を乗せて販売する。例＝パートナーが10万円で受ける案件 → 顧客に12万円で提示 → パートナーへ10万円で流し、<b>差額2万円がCamy'sの取り分</b>。</div>
+
+    <h3>担当者の仕事（概要）</h3>
+    <p>(1) 業務提携先を増やす ／ (2) 営業活動を行い無料撮影を取る ／ (3) 契約のクロージング。詳しくは PART 2 役割分担へ。</p>
+  </div>
+</section>
+
+<!-- 2 -->
+<section id="p2" class="sec-grey">
+  <div class="wrap">
+    <span class="step-no">PART 2</span>
+    <h2>役割分担（ここが一番大事）</h2>
+    <p class="lead">担当者が主体的に動く。担当者ができないこと（お金の決裁・契約条件の確定）をtaikiが担う。</p>
+
+    <div class="roles">
+      <div class="role boss"><span class="chip">taiki</span><div>契約内容（プラン・金額）を決めて担当者に伝える／提携の最終可否を判断／担当者へのフィードバック。提携先とは直接やり取りせず、表に立つのは担当者。</div></div>
+      <div class="role you"><span class="chip">担当者</span><div>前面で動く主役。パートナー開拓も顧客開拓も両方。提携先との最終すり合わせ・契約締結・決まった金額のクロージングまで担う。</div></div>
+      <div class="role partner"><span class="chip">業務提携先</span><div>制作・運用。企画・撮影・編集・投稿の実務。</div></div>
+    </div>
+    <p class="note">担当者を増員・教育してスケールするのが理想形。</p>
+
+    <h3>2つの軸（両方とも担当者がやる）</h3>
+    <table>
+      <tr><th>軸</th><th>担当者（前面で動く）</th><th>taiki（後方・FB）</th></tr>
+      <tr><td><b>軸A：提携先を増やす</b></td><td>募集→面談→実績/単価ヒアリング→一次足切り→有望株をtaikiに共有→taikiが決めた条件で提携先と最終すり合わせ→契約締結</td><td>提携金額・契約内容を決めて担当者に伝える／組む・組まないの最終判断／担当者へのフィードバック（提携先とは直接やり取りしない）</td></tr>
+      <tr><td><b>軸B：顧客を取る</b></td><td>パートナーの実績を武器に一般企業へ営業→無料撮影を取る→運用→良ければクロージング</td><td>イレギュラー対応・担当者へのフィードバック</td></tr>
+    </table>
+
+    <div class="key"><b>顧客側の営業フロー（無料がフック）：</b>無料撮影で受注（入口）→ 運用してみる → 良ければ「決まった金額」で本契約 → 継続。</div>
+
+    <h3>決裁ライン（鉄則）</h3>
+    <ol>
+      <li>金額・プランはtaikiが決めて担当者に渡す（提携先ごとの価格表）。担当者は<b>その決まった金額を売る</b>（毎回の承認は不要）。</li>
+      <li><b>イレギュラー</b>（特例値引き・想定外の条件）はtaikiが対応。担当者はその場で約束せず持ち帰る。</li>
+      <li>業務提携契約（Camy's × パートナー）の<b>内容確認はtaiki</b>、作成・送信・締結は担当者。</li>
+      <li>顧客契約のクロージングは担当者がやってよい（決まった金額の範囲内なら自走できる）。</li>
+    </ol>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section id="flow" class="sec-grad">
+  <div class="wrap">
+    <span class="step-no">OVERVIEW</span>
+    <h2>全体フロー（募集から営業まで）</h2>
+    <p class="lead">この順番で1社ずつ提携先を増やし、その実績で顧客を取る。</p>
+    <div class="flow">
+      <div class="step"><span class="num">1</span><b>募集</b><span>パートナーを集める（担当者）</span></div>
+      <div class="step"><span class="num">2</span><b>面談を組む</b><span>選別→TimeRex（担当者）</span></div>
+      <div class="step"><span class="num">3</span><b>説明トーク</b><span>1回目面談・冒頭（担当者）</span></div>
+      <div class="step"><span class="num">4</span><b>実績ヒアリング</b><span>公開可否も確認（担当者）</span></div>
+      <div class="step"><span class="num">5</span><b>単価ヒアリング</b><span>営業代行の合意（担当者）</span></div>
+      <div class="step"><span class="num">6</span><b>すり合わせ</b><span>互いに宿題（担当者）</span></div>
+      <div class="step"><span class="num">7</span><b>契約</b><span>クラウドサイン（担当者・確認taiki）</span></div>
+      <div class="step"><span class="num">8</span><b>実績で営業</b><span>顧客を取る（担当者）</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section id="p3">
+  <div class="wrap">
+    <span class="step-no">PART 3 ／ ステップ1</span>
+    <h2>募集（パートナーを集める）</h2>
+    <p class="lead">一般企業に強い運用パートナーを集める入口。経験者・実績者を狙う（未経験は募集しない）。</p>
+
+    <h3>募集の2つの型</h3>
+    <table>
+      <tr><th>型</th><th>見せ方</th><th>相手・使いどころ</th></tr>
+      <tr><td><b>型A：案件募集型（主軸）</b></td><td>「〇〇業界の△△アカウント運用者募集・月5万〜」と具体案件で釣る（taikiの美容クリニック実例がこれ）</td><td>案件が欲しい運用者がポートフォリオ持参で応募。毎日大量に出す</td></tr>
+      <tr><td><b>型B：業務提携型（並行）</b></td><td>「営業は当社が担当・継続で組みませんか」と提携を持ちかける</td><td>運用を事業でやる会社・チーム・実績者。X・スレッズのDM（実績公開者にこちらから声かけ）が本命</td></tr>
+    </table>
+
+    <h3>募集の運用ルール</h3>
+    <ol>
+      <li>媒体：クラウドワークス／ランサーズ／X／スレッズ</li>
+      <li>地域：東京・大阪</li>
+      <li>報酬：月5万〜で出す（詳細条件は2回目の面談で取り決め）</li>
+      <li>業界を名指しする</li>
+      <li>未経験は募集しない（経験者・実績者限定）</li>
+      <li>毎日大量に出す。同じ文も新規文も両方回す</li>
+      <li>応募時にポートフォリオ提出を必須にする</li>
+    </ol>
+
+    <h3>型A・タイトル案（採用バージョン）</h3>
+    <ul>
+      <li>【東京】自動車整備工場の採用TikTok運用をお任せできるパートナーを募集します</li>
+      <li>【東京】採用×ショート動画が得意な方募集｜製造・整備・運送系アカウントの運用経験者歓迎</li>
+      <li>【継続】採用向けTikTok運用パートナー募集｜営業は当社、運用をお任せします</li>
+    </ul>
+
+    <div class="copy"><span class="cap">＝ 型A・本文サンプル（自動車整備工場の採用）／コピペ用 ＝</span>自動車整備工場の採用アカウント運用をお任せできる方を募集します。
+採用・求人系アカウントのTikTok・ショート動画運用の経験がある方、または現在も運用中の方を探しています。
+「採用領域でSNS運用の実績をさらに積みたい」
+「自分のノウハウを活かして採用アカウントを伸ばしたい」
+という、専門性と意欲をあわせ持つ方からのご応募をお待ちしています。
+
+▼ お任せしたい業務
+採用アカウントの成長を目指し、TikTok運用代行の全般をお任せします。
+企画・台本作成から動画編集、投稿、数値分析（改善）までを一貫して担当していただきます。
+・運用方針の策定（ターゲット＝求職者、コンセプト設計）
+・企画立案、台本作成（社員紹介・1日の仕事の流れ・職場の雰囲気・先輩インタビューなど）
+・動画編集（縦型ショート動画）
+・アカウントへの投稿作業
+・投稿後の数値分析と次回への改善提案
+
+▼ 報酬
+月額50,000円〜
+
+▼ 作業量
+月間10本の動画制作・投稿
+※成果に応じて、報酬アップや別アカウントの追加依頼も検討いたします。
+
+▼ 本案件のメリット
+・採用領域という需要の高いジャンルで、運用実績を積むことができます
+・スケジュールや納期管理ができれば、作業時間は自由です
+・ご自身のポートフォリオとして公開可能です
+
+▼ こんな方を歓迎します
+・採用・求人系アカウントのTikTok運用経験がある方
+・現在も採用系アカウントを継続して運用されている方
+・製造・整備・運送・建設など、現場系の採用に理解がある方
+・再生数・フォロワー数などの数字と向き合うのが好きな方
+・動画編集の基礎操作ができ、さらにスキルの幅を広げたい方
+・こまめな報・連・相ができ、気持ちよくやり取りができる方
+
+▼ 応募用テンプレート
+下記項目をご記入の上、ご応募ください。
+・ご年齢
+・現在の働き方（例：会社員、フリーランス等）
+・割けるリソース（週に〇〇時間）
+・ポートフォリオ（運用中または過去に担当したアカウントのURL等）
+・採用・求人系アカウントの運用経験（有 / 無 / 個人アカウントの運用経験）
+・SNS運用や動画編集の学習方法（例：独学、〇〇講座受講中、〇〇スクール卒業など）
+・連絡の取りやすい時間帯
+
+■ 最後に
+ここまでお読みくださりありがとうございます！
+採用領域でTikTokを一緒に盛り上げてくれる方からのご応募をお待ちしております！</div>
+    <p class="note">業種・業務例・歓迎条件を差し替えれば、飲食・美容・士業など他ジャンルにも使い回せる穴埋め雛形。お手本＝taikiの美容クリニックTikTok運用の実募集文（同じ構造）。</p>
+
+    <div class="copy"><span class="cap">＝ 型B・本文サンプル／コピペ用 ＝</span>株式会社Camy'sと申します。
+SNS運用の実績をお持ちの会社・フリーランスの方と、継続的な業務提携を結ばせていただける方を探しています。
+
+■ ご提案する形
+・営業・案件獲得は当社が担当します
+・獲得した案件の運用（企画・撮影・編集・投稿・分析）を御社にお任せします
+・御社は営業の手間なく、運用に集中して案件を継続的に受けられます
+
+■ こんな会社・方を探しています
+・特定の業種（採用／飲食／美容／士業 など）でSNS運用の実績をお持ちの方
+・継続して一緒に案件を回せる体制がある方
+・実績（数字）を共有いただける方
+
+■ 報酬
+1案件あたり月50,000円〜（継続）。詳細は面談ですり合わせます。
+
+■ 進め方
+まず30分のオンライン面談で、御社の得意分野・実績をお聞かせください。
+当社からどんな案件をお渡しできるかをご説明します。
+
+株式会社Camy's</div>
+    <p class="note">型Bの本命はX・スレッズのDM（プッシュ型）。「あなたの〇〇の実績を見ました。営業はうちが担当するので案件を継続でお渡しできます」と相手の実績を見た上で送ると刺さる。</p>
+  </div>
+</section>
+
+<!-- 4 -->
+<section id="p4" class="sec-grey">
+  <div class="wrap">
+    <span class="step-no">PART 4 ／ ステップ2</span>
+    <h2>面談を組む（打診〜日程調整）</h2>
+    <p class="lead">反応があった人から実績が豊富そうな人だけに返信し、TimeRexで面談（Zoom）をセッティング。全員には返信しないのがコツ。</p>
+
+    <div class="judge">
+      <div class="col up"><h4>返信する（実績が豊富そう）</h4>
+        <ul>
+          <li>運用アカウントのURL・実績の数字（再生数・フォロワー・採用人数）を提示している</li>
+          <li>特定ジャンル（採用・美容・飲食など）で継続して運用した形跡がある</li>
+          <li>会社・チーム、または専業フリーランスとして運用している</li>
+        </ul>
+      </div>
+      <div class="col ng"><h4>省く（経験が少なそう）</h4>
+        <ul>
+          <li>ポートフォリオが個人アカウントのみ／実績の数字がない</li>
+          <li>「勉強中」「これから実績を作りたい」という未経験〜駆け出し</li>
+          <li>運用代行の経験がなく、編集だけ・撮影だけの人</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">迷ったら「この人の実績を、Camy'sの営業で使えるか？」で判断。使えなさそうなら省く。</p>
+
+    <div class="copy"><span class="cap">＝ 返信文テンプレ（応募へのお礼＋面談打診）／コピペ用 ＝</span>〇〇様
+
+このたびはご応募いただき、ありがとうございます。
+株式会社Camy'sの△△と申します。
+
+ポートフォリオを拝見し、ぜひ一度オンラインでお話しさせていただきたく
+ご連絡いたしました。
+
+30分ほどのオンライン面談（Zoom）で、
+御社（あなた様）の得意分野・ご実績をお聞かせいただき、
+当社からどのような案件をお渡しできるかをご説明できればと思います。
+
+下記より、ご都合のよい日時をお選びください。
+▼ 日程調整URL（TimeRex）
+（ここにTimeRexのURL）
+
+ご不明点があればお気軽にお知らせください。
+よろしくお願いいたします。</div>
+
+    <h3>TimeRex日程調整の流れ</h3>
+    <ol>
+      <li>TimeRexで「協業先面談・30分・Zoom」の予約枠を1つ作っておき、毎回使い回す</li>
+      <li>返信文にそのURLを貼る → 相手が枠を選ぶ → 自動でZoom URL付きの予定が入る</li>
+      <li>面談前に相手のポートフォリオ・SNS・HPに軽く目を通しておく</li>
+    </ol>
+    <p class="note">返信文テンプレは事前に用意し、相手に合わせて〇〇だけ差し替える。大量募集なので「選別→テンプレ貼り付け」で素早く回す。</p>
+  </div>
+</section>
+
+<!-- 5 -->
+<section id="p5">
+  <div class="wrap">
+    <span class="step-no">PART 5 ／ ステップ3（1回目面談・冒頭）</span>
+    <h2>Camy'sの説明トーク</h2>
+    <p class="lead">面談の冒頭で「Camy'sと組むと営業の手間なく案件が増える」と思ってもらう。正直に状況を話して、いい関係性を作るのが軸。</p>
+
+    <div class="key"><b>面談で見せる会社紹介サイト：</b>下記URLを画面共有しながら、Camy'sの会社概要・実績（YouTube・TikTok）を見せて信頼を作る。トークの(1)お礼・つかみのタイミングで開く。<br><a href="https://taiki3023-creator.github.io/camys-kaisha-4sthme/" target="_blank">https://taiki3023-creator.github.io/camys-kaisha-4sthme/</a></div>
+
+    <div class="talk"><span class="role-k">(1) お礼・つかみ</span>本日はお時間いただきありがとうございます。株式会社Camy'sの△△と申します。まず弊社のことを簡単にご説明させてください。（会社紹介サイトを画面共有で開く）</div>
+    <div class="talk"><span class="role-k">(2) 自己紹介＋現状（正直に・前向きに）</span>弊社Camy'sはSNS運用代行をしている会社です。これまでナイトワーク系の運用が中心で、おかげさまでお客様も多く、事業としてしっかり成り立っています。営業にも強みがあって、業種ごとの営業リストや新規開拓の仕組みを持っています。いまは次のフェーズとして、一般企業向けにも展開を広げていきたいと考えています。だからこそ、一般企業に強い御社と組ませていただきたいんです。</div>
+    <div class="talk"><span class="role-k">(3) 提案（核心）</span>今回の形は、"営業は弊社が担当して案件を取ってくる、運用は御社にお任せする" というものです。弊社が一般企業のクライアントを獲得して、その運用を御社にお渡しするイメージです。</div>
+    <div class="talk"><span class="role-k">(4) 相手のメリット</span>御社は営業の手間をかけずに、運用に集中したまま案件を継続的に受けられます。"運用は得意だけど営業は手薄" という方と特に相性がいい形です。</div>
+    <div class="talk"><span class="role-k">(5) ブリッジ（→実績ヒアリングへ）</span>そのために、まず御社がどんな業種で・どんな実績をお持ちかをお聞かせいただけますか？</div>
+
+    <div class="key"><b>狙い：</b>正直に「ナイトワーク中心・一般企業を強化したい」と話す→提携理由が明確になり相手が協力的に。「すでに事業として成立している」と伝える→相手が安心し "営業すれば儲かる会社" と感じる。</div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section id="p6" class="sec-grey">
+  <div class="wrap">
+    <span class="step-no">PART 6 ／ ステップ4</span>
+    <h2>実績ヒアリング（聞き方＋記録シート）</h2>
+    <p class="lead">営業で使える「武器（実績）」を、使えそうなものは全部聞き出して記録する。1つに絞らず、業種・アカウントリンク・エンドクライアントの具体的なCV（集客・採用人数）まで漏れなく拾う。</p>
+
+    <div class="talk"><span class="role-k">(1) 使える実績を全部聞き出す</span>これまでに運用された案件で、使えそうなものは全部教えてください。業種・アカウントのリンク・エンドクライアントの具体的な成果（集客した人数／採用できた人数などのCV）まで、数字があるほど営業で使えます。</div>
+    <div class="talk"><span class="role-k">(2) 【最重要】公開可否を実績ごとに確認</span>その実績、弊社の営業資料に載せてもよいものですか？ それとも商談の場で見せるだけがよいですか？</div>
+    <div class="talk"><span class="role-k">(3) 他の武器も集める</span>他にも成果の出た案件があれば教えてください。（複数ジャンルの実績は営業の幅を広げる）</div>
+    <div class="talk"><span class="role-k">(4) 深掘りで裏取り</span>この〇〇が伸びた要因は何でしたか？ → スラスラ具体的に語れるか確認。応募時のポートフォリオURLは面談前に担当者が見ておく。</div>
+
+    <h3>記録シート（実績ごとに1セット・使えそうな実績は全部）</h3>
+    <table>
+      <tr><th>項目</th><th>記入欄</th></tr>
+      <tr><td>アカウント名</td><td></td></tr>
+      <tr><td>リンク</td><td>運用アカウントのURL</td></tr>
+      <tr><td>業種</td><td>（例：採用／美容／飲食 など）</td></tr>
+      <tr><td>目的</td><td>（例：採用／集客／認知 など）</td></tr>
+      <tr><td>CV（具体的な成果）</td><td>集客した人数／採用できた人数／問い合わせ件数 など</td></tr>
+      <tr><td>公開範囲</td><td>公開OK ／ 商談のみ ／ NG</td></tr>
+    </table>
+    <p class="note">実績は1つに絞らず、使えそうなものは全部この6項目で記録する（数字は鵜呑みにせずアカウントURL＋面談の説明で裏取り）。運用体制（一人／チーム・月に何件まで対応可能か）も併せて確認。</p>
+
+    <div class="key"><b>事故防止：</b>(1) 公開可否は実績ごとに必ず分けて聞く（怠ると営業資料にNG実績を載せて事故る・最重要）。(2) 数字は鵜呑みにせずURL＋面談の説明で裏取り。(3) 盛った数字を信じて営業すると受注後クレームに。</div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section id="p7">
+  <div class="wrap">
+    <span class="step-no">PART 7 ／ ステップ5</span>
+    <h2>単価ヒアリング（聞き方＋記録シート）</h2>
+    <p class="lead">いくらで運用を受けてくれるかを把握し、「御社のサービスを営業代行してよいか」の合意を取り、営業で使う実績の詳細を聞き出す。</p>
+
+    <div class="talk"><span class="role-k">(1) 本数別の単価</span>月◯本の運用だといくらくらいで受けていただけますか？ 6本・10本・15本あたりで目安があれば教えてください。</div>
+    <div class="talk"><span class="role-k">(2) 演者起用の有無（費用は聞かない）</span>役者などの演者を入れて撮影することはありますか？</div>
+    <div class="talk"><span class="role-k">(3) 対応範囲</span>対応エリアや、撮影の出張は可能ですか？</div>
+    <div class="talk"><span class="role-k">(4) 営業代行の合意を取る（重要）</span>お伺いした内容で、ぜひ御社のサービスを弊社が営業代行させていただきたいのですが、よろしいですか？</div>
+    <div class="talk"><span class="role-k">(5) OKなら実績を細かく聞く</span>では営業で使わせていただくために、実績を詳しくお聞かせください。＝実績アカウントのURL／運用の経過年数／集客・採用の具体的な実績／公開範囲（メール等に記載してよいか／クローズドな場ならOKか）</div>
+
+    <h3>記録シート（面談中に埋める）</h3>
+    <table>
+      <tr><th>項目</th><th>記入欄</th></tr>
+      <tr><td>本数別単価</td><td>6本：／10本：／15本：</td></tr>
+      <tr><td>演者起用</td><td>あり ／ なし</td></tr>
+      <tr><td>対応エリア・出張可否</td><td></td></tr>
+      <tr><td>営業代行の許可</td><td>OK ／ 要検討</td></tr>
+      <tr><td>実績：アカウントURL</td><td></td></tr>
+      <tr><td>実績：運用経過年数</td><td></td></tr>
+      <tr><td>実績：具体的な成果</td><td>集客・採用の数字</td></tr>
+      <tr><td>実績：公開範囲</td><td>メール記載OK ／ クローズドならOK ／ NG</td></tr>
+    </table>
+
+    <div class="key"><b>注意：</b>(1) お金の条件はその場で決めない・約束しない（単価は聞くだけ）。(2) <b>仲介料20%は相手に言わない</b>。聞くのは御社が受ける単価だけ（提示額＝＋20%はtaikiが設計）。(3) 「営業代行してOKか」を必ず口頭で確認してから実績を営業に使う。(4) 公開範囲は「メール記載OK／クローズドならOK／NG」まで具体的に分けて確認。</div>
+  </div>
+</section>
+
+<!-- 8 -->
+<section id="p8" class="sec-grey">
+  <div class="wrap">
+    <span class="step-no">PART 8 ／ ステップ6（1回目面談・締め）</span>
+    <h2>協業すり合わせ（互いに宿題を出して締める）</h2>
+    <p class="lead">お金はその場で決めず、双方が宿題を持ち帰って2回目の面談につなぐ。2回目も担当者が出る。</p>
+
+    <div class="talk"><span class="role-k">(1) お礼・前向きな締め</span>本日はありがとうございました。ぜひ御社と組ませていただきたいと思っています。</div>
+    <div class="talk"><span class="role-k">(2) お金は持ち帰る</span>料金配分や条件面は、いただいた内容を持ち帰って弊社で整理し、改めてご提案させてください。</div>
+    <div class="talk"><span class="role-k">(3) 宿題のすり合わせ</span>次回までに、弊社からは具体的な協業内容（役割分担・進め方・条件）の提案をまとめてきます。御社には、営業で使わせていただく実績の整理をお願いできますか。アカウントのURL、運用年数、集客・採用の具体的な成果、公開範囲（メールに載せてよいか／クローズドな場のみか）をまとめていただけると助かります。</div>
+    <div class="talk"><span class="role-k">(4) 次回の約束（担当者が主体）</span>整理ができ次第、2回目の打ち合わせで私から提案内容をご説明します。日程はまた調整させてください。</div>
+
+    <div class="roles" style="margin-top:14px">
+      <div class="role boss"><span class="chip">Camy's側の宿題</span><div>役割分担／料金配分・仲介料20%／お金の流れ（顧客→Camy's→先方）／実績の公開範囲／契約期間・秘密保持。これらは<b>メディアスタンドと結んだ業務提携契約書がそのまま雛形</b>になる（下表）。<b>設計はtaiki・提示は担当者。</b></div></div>
+      <div class="role you"><span class="chip">先方の宿題</span><div>実績アカウントのURL／運用経過年数／集客・採用の具体的な実績／公開範囲（メール記載OK・クローズドのみOK・NG）。</div></div>
+    </div>
+
+    <div class="key"><b>注意：</b>基本は担当者が主体的に動く（1回目も2回目も担当者が出る）。担当者ができないこと（協業提案の設計・お金の決裁）をtaikiが担う。面談の記録シート＋先方の宿題をtaikiに上げる→taikiが協業提案を作る→担当者が2回目面談で提示。先方の公開範囲は必ず守って営業資料を作る。</div>
+
+    <h3>たたき台＝メディアスタンドと結んだ業務提携契約書</h3>
+    <p>料金配分・お金の流れ・公開範囲・契約期間は、すでにメディアスタンドと結んだ契約書がそのまま雛形になる。相手にはこの中身を示して条件をすり合わせる。</p>
+
+    <table>
+      <tr><th>プラン</th><th>受注金額（税抜）</th><th>仲介料（Camy's）</th><th>運用費（パートナー）</th></tr>
+      <tr><td>6本プラン</td><td>150,000円</td><td>30,000円</td><td>120,000円</td></tr>
+      <tr><td>10本プラン</td><td>250,000円</td><td>50,000円</td><td>200,000円</td></tr>
+      <tr><td>15本プラン</td><td>375,000円</td><td>75,000円</td><td>300,000円</td></tr>
+    </table>
+    <p class="note">仲介料は受注金額の2割。Camy'sが役者を起用する場合は、6本＋20,000／10本＋30,000／15本＋40,000円（税抜）を顧客支払額に加算し、全額Camy'sが受領（パートナーの運用費は増減しない）。</p>
+
+    <table>
+      <tr><th>項目</th><th>契約書での定め</th></tr>
+      <tr><td>お金の流れ</td><td>顧客がCamy'sに受注金額の全額を支払い → Camy'sが運用費をパートナーに支払う。請求は納品完了月。</td></tr>
+      <tr><td>実績の公開</td><td>顧客の許諾が得られた案件のみ、Camy's・パートナー双方が実績として公開できる。</td></tr>
+      <tr><td>受注金額の割引</td><td>割引はその都度、Camy'sとパートナーが合意のうえ行う。</td></tr>
+      <tr><td>フィードバック</td><td>Zoomで1〜2時間を目安に実施（双方合意で取りやめ可）。</td></tr>
+      <tr><td>契約期間</td><td>提携は締結日から1年・自動更新。獲得した案件は原則3か月を目安。</td></tr>
+      <tr><td>秘密保持</td><td>相手・顧客の情報は目的外利用・第三者開示をしない。契約終了後も3年間有効。</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 9 -->
+<section id="p9">
+  <div class="wrap">
+    <span class="step-no">PART 9 ／ ステップ7</span>
+    <h2>契約（クラウドサインで電子契約）</h2>
+    <p class="lead">2回目面談で協業提案に合意 → 業務提携契約を締結。契約はクラウドサイン。taikiは内容確認のみで表に出ない。作成・送信・締結は担当者が進める。</p>
+
+    <h3>締結フロー</h3>
+    <ol>
+      <li><b>2回目面談</b>：担当者が協業提案（taiki作成）を提示 → 相手が合意</li>
+      <li><b>契約書の草案づくり</b>：担当者が、メディアスタンドの業務提携契約書を雛形に、会社名・条件を差し替えて作成</li>
+      <li><b>taikiが内容を確認</b>（条件・条文が合っているかチェック）※ここだけtaiki</li>
+      <li><b>担当者がクラウドサインで相手に送信</b> → 相手が電子署名 → 締結完了（締結済みPDFが自動保存）</li>
+    </ol>
+
+    <h3>締結後すぐやること（営業資料の回収）</h3>
+    <p>業務提携契約を締結したら、<b>提携先が普段の営業で使っている資料があれば見せていただき回収する</b>（営業資料・実績まとめ・提案書など）。Camy'sの営業にそのまま使える武器が増える。「営業の際に使われている資料があれば、ぜひ拝見させてください」と一言添えて依頼する。</p>
+
+    <h3>契約書に必ず明記する項目</h3>
+    <ol>
+      <li>仲介料20%（受注額に対する割合）</li>
+      <li>お金の流れ（顧客 → Camy's → パートナー）</li>
+      <li>実績の公開範囲（営業資料に載せてよい実績／クローズドのみ／NG）</li>
+      <li>秘密保持</li>
+      <li>契約期間（提携1年・自動更新／案件ごと3か月目安 など）</li>
+    </ol>
+    <p class="note">雛形＝メディアスタンド業務提携契約書を流用。差し替える：相手の会社名／住所／代表者名／仲介料率／お金の流れ／実績の公開範囲／契約期間。</p>
+
+    <div class="key"><b>注意：</b>(1) 契約条件（特にお金・公開範囲）は必ずtaikiの確認を通してから送信（担当者が勝手に送らない）。(2) 実績の公開範囲は契約書にも明記（口頭だけにしない）。(3) クラウドサインの送信先メールアドレスを間違えない。</div>
+  </div>
+</section>
+
+<!-- 10 -->
+<section id="p10" class="sec-grad-rev">
+  <div class="wrap">
+    <span class="step-no">PART 10 ／ ステップ8</span>
+    <h2>実績を使って営業（顧客を取る）</h2>
+    <p class="lead">契約したパートナーの実績を武器に、Camy'sが一般企業の顧客を取りにいく。スキームの出口。担当者が主体で回す。</p>
+
+    <h3>営業の流れ</h3>
+    <ol>
+      <li><b>ターゲット選定</b>：パートナーの得意業種に合わせ、Camy'sの業種別営業リストから顧客候補を選ぶ（例：飲食が得意なパートナー→飲食店リストへ）</li>
+      <li><b>アプローチ</b>：営業メール・DM等で接触。「御社と同業種で〇〇という実績があります」と公開OK実績を提示</li>
+      <li><b>無料撮影フック</b>：「まず無料で撮影します」で入口ハードルを下げる（折半に応じるパートナーの案件で使う）</li>
+      <li><b>運用</b>：受注したらパートナーへ流し、撮影・運用してもらう</li>
+      <li><b>本契約</b>：運用が良ければ決まった金額で契約 → 継続。クロージングは担当者</li>
+    </ol>
+
+    <h3>武器（実績）の使い方</h3>
+    <ul>
+      <li>営業資料・メールに載せるのは<b>「公開OK」実績だけ</b>。「商談のみOK」は対面・Zoomの商談でだけ見せる。<b>NGは一切出さない</b></li>
+      <li><b>提示額＝パートナー単価＋仲介料20%</b>（taikiが決めた価格表に従って売る）</li>
+    </ul>
+    <p class="note">既存リソース連携：Camy'sの業種別営業リスト（建築・介護・美容 等は構築済み）、営業メールの送信エンジン／返信対応の仕組みに「パートナーの実績」を載せてアウトバウンドする。</p>
+  </div>
+</section>
+
+<!-- 11 -->
+<section id="p11">
+  <div class="wrap">
+    <span class="step-no">PART 11 ／ 判断</span>
+    <h2>見極め基準（2層）</h2>
+    <p class="lead">担当者は左の「足切り」で明らかにダメを見送り、右の「判断材料」を埋めて有望株をtaikiに上げる。最終判断はtaiki。</p>
+    <div class="judge">
+      <div class="col ng">
+        <h4>担当者の一次足切り（即見送り）</h4>
+        <div class="s">1つでも当てはまったら、taikiに上げず見送ってよい</div>
+        <ul>
+          <li>実績を一切出せない（数字も画面共有もURLも無い）</li>
+          <li>公開どころか商談でも一切見せられない実績しかない</li>
+          <li>連絡が遅い・無断遅刻・面談態度が悪い（運用も同じになる）</li>
+          <li>業種がCamy'sのターゲットと全く噛み合わない</li>
+          <li>単価が極端に高く、Camy'sの売値に乗らない</li>
+          <li>反社的・規約違反スレスレの運用をしている</li>
+        </ul>
+      </div>
+      <div class="col up">
+        <h4>taikiに上げる判断材料</h4>
+        <div class="s">有望株はこの5点を添えて上げる</div>
+        <ul>
+          <li>強い業種と具体実績（＋実績ごとの公開可否）</li>
+          <li>本数別の運用単価（売値・仲介料の設計材料）</li>
+          <li>人柄・レス速度・面談の印象（継続して組めそうか）</li>
+          <li>Camy'sの既存リストで売れそうか（ターゲット業種マッチ）</li>
+          <li>営業代行の許可が取れているか</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 -->
+<section id="p12" class="sec-grey">
+  <div class="wrap">
+    <span class="step-no">PART 12 ／ 武器</span>
+    <h2>無料撮影の打ち手（提携先次第で使う）</h2>
+    <p class="lead">標準フローには組み込まない。費用折半に応じてくれる提携先とだけ使える「入口ハードルを下げる打ち手」。</p>
+    <div class="cards">
+      <div class="card"><div class="n">どんな打ち手か</div><h4>顧客に「無料撮影」を提供</h4><p>提携先と費用を折半し、顧客には実質無料で撮影を出す。最初の一歩のハードルを下げ、本契約につなげる。</p></div>
+      <div class="card"><div class="n">使う条件</div><h4>提携先が折半に応じること</h4><p>提携先が原価で撮影・編集を実施し、Camy'sと費用を折半できる場合のみ。応じない提携先には使わない。</p></div>
+      <div class="card"><div class="n">担当者の動き</div><h4>意向確認 → taiki決裁</h4><p>担当者は面談で「折半に応じられそうか」だけ確認。実際にやるか・金額はtaikiが決める。</p></div>
+    </div>
+    <div class="key"><b>実例（メディアスタンド）：</b>撮影・編集3本2.5万円の原価を、Camy's 1.5万円＋MS 1万円で折半し、顧客は実質無料。</div>
+  </div>
+</section>
+
+<!-- 13 -->
+<section id="p13">
+  <div class="wrap">
+    <span class="step-no">PART 13 ／ 事故防止</span>
+    <h2>NG集・トラブル事例</h2>
+    <p class="lead">起きうる事故と、その防ぎ方。これを頭に入れておけば大きなミスは避けられる。</p>
+    <div class="nglist">
+      <div class="ngcard"><b>NG 1：公開NG実績を営業資料に載せた</b><p>クローズド実績を資料に出すと、提携先との信頼が崩れ契約問題になる。</p><span class="fix">防ぐ：実績ごとに公開可否を聞き記録。資料には「公開OK」だけ。契約書にも公開範囲を明記。</span></div>
+      <div class="ngcard"><b>NG 2：担当者がその場でお金を約束した</b><p>仲介料・費用分担・金額をその場で口約束すると、後で覆せず損をする。</p><span class="fix">防ぐ：お金の話は全部「持ち帰って確認します」。決めるのはtaiki。</span></div>
+      <div class="ngcard"><b>NG 3：単発外注のノリで募集した</b><p>「1件いくらで作業お願い」の見せ方だと、継続して組めるパートナーが集まらない。</p><span class="fix">防ぐ：募集は「継続パートナー」「営業はこちらが担当」で統一。</span></div>
+      <div class="ngcard"><b>NG 4：提示額にパートナー単価をそのまま使った</b><p>仲介料が乗らず、Camy'sの利益が消える。</p><span class="fix">防ぐ：顧客提示額は必ず「パートナー単価＋仲介料20%」。設計はtaiki。</span></div>
+      <div class="ngcard"><b>NG 5：相手の実績を裏取りせず鵜呑みにした</b><p>盛った数字を信じて営業すると、受注後に運用が伴わずクレームになる。</p><span class="fix">防ぐ：面談でアカウントURL・具体的に語れるかで実数字を確認。</span></div>
+      <div class="ngcard"><b>NG 6：足切り対象を無理にtaikiに上げた</b><p>明らかにダメな相手を上げると、taikiの判断時間を奪い全体が遅くなる。</p><span class="fix">防ぐ：足切り基準に1つでも当てはまれば、担当者の判断で見送ってよい。</span></div>
+      <div class="ngcard"><b>NG 7：クラウドサインの送信先を間違えた</b><p>別の相手に契約書を送ると情報漏えい・信頼失墜になる。</p><span class="fix">防ぐ：送信前に宛先メールアドレスを必ず指差し確認。</span></div>
+      <div class="ngcard"><b>NG 8：受注をパートナーに共有せず放置した</b><p>運用開始が遅れ、顧客の初動が止まってクレームのもとに。</p><span class="fix">防ぐ：受注したら速やかにパートナーへ共有し運用を始めてもらう。</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="foot">株式会社Camy's 営業チーム ／ 協業先開拓マニュアル v1（担当者が一人で回せる実務版）／ 2026-06-15</div>
+
+</body>
+</html>
