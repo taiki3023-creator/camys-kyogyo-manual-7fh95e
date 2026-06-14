@@ -106,11 +106,42 @@
   .anchor-nav a:hover{background:var(--grad);color:#fff;border-color:transparent}
 
   .foot{text-align:center;font-size:12px;color:var(--sub);padding:28px 0}
+
+  /* diagram: お金の流れ */
+  .money{display:flex;align-items:stretch;gap:0;margin:16px 0 6px;flex-wrap:nowrap}
+  .money .box{flex:1;min-width:120px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 12px;text-align:center;box-shadow:0 6px 18px rgba(30,58,95,.06)}
+  .money .box .lbl{font-size:12px;color:var(--sub);display:block;margin-bottom:4px;font-weight:700}
+  .money .box .amt{font-size:21px;font-weight:800;color:var(--navy)}
+  .money .box.mid{background:var(--grad);border:none}
+  .money .box.mid .lbl{color:rgba(255,255,255,.9)}
+  .money .box.mid .amt{color:#fff}
+  .money .box.mid .sub{display:block;font-size:11px;color:#bff0ff;margin-top:4px;font-weight:700}
+  .money .arw{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 4px;min-width:64px}
+  .money .arw .a{font-size:24px;color:var(--cyan);font-weight:800;line-height:1}
+  .money .arw .t{font-size:11px;color:var(--sub);margin-top:4px;text-align:center;line-height:1.4}
+
+  /* diagram: 関係図 */
+  .rel{display:grid;grid-template-columns:1fr .6fr 1.15fr .6fr 1fr;gap:6px;align-items:center;margin:18px 0 6px}
+  .rel .node{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 10px;text-align:center;box-shadow:0 6px 18px rgba(30,58,95,.06)}
+  .rel .node h5{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:4px}
+  .rel .node p{font-size:12px;color:var(--sub);margin:0;line-height:1.6}
+  .rel .node.center{background:var(--grad);border:none}
+  .rel .node.center h5,.rel .node.center p{color:#fff}
+  .rel .link{text-align:center}
+  .rel .link b{display:block;font-size:18px;color:var(--cyan);font-weight:800;line-height:1}
+  .rel .link span{display:block;font-size:11px;color:var(--sub);margin-top:3px;line-height:1.4}
+  .rel-note{font-size:12px;color:var(--sub);margin-top:6px}
+
   @media(max-width:760px){
     .cards,.roles,.judge,.nglist{grid-template-columns:1fr}
     .flow{grid-template-columns:1fr 1fr}
     .hero h1{font-size:25px}
     h2{font-size:21px}
+    .money{flex-direction:column}
+    .money .arw{flex-direction:row;min-width:auto;padding:8px 0}
+    .money .arw .a{transform:rotate(90deg)}
+    .rel{grid-template-columns:1fr}
+    .rel .link b{transform:rotate(90deg);display:inline-block}
   }
 </style>
 </head>
@@ -163,6 +194,13 @@
       <li>【最終形】営業も<b>営業代行</b>に任せ、営業代行が提携先の案件を取ってくる形にする → Camy'sは<b>自前の制作部隊を持たずに回せる</b></li>
     </ol>
 
+    <div class="money">
+      <div class="box"><span class="lbl">顧客</span><span class="amt">12万円</span></div>
+      <div class="arw"><span class="a">→</span><span class="t">支払う</span></div>
+      <div class="box mid"><span class="lbl">Camy's（自社）</span><span class="amt">+2万円</span><span class="sub">仲介料20%＝取り分</span></div>
+      <div class="arw"><span class="a">→</span><span class="t">10万で発注</span></div>
+      <div class="box"><span class="lbl">パートナー（運用）</span><span class="amt">10万円</span></div>
+    </div>
     <div class="key"><b>利益：</b>仲介料20%を乗せて販売する。例＝パートナーが10万円で受ける案件 → 顧客に12万円で提示 → パートナーへ10万円で流し、<b>差額2万円がCamy'sの取り分</b>。</div>
 
     <h3>担当者の仕事（概要）</h3>
@@ -176,6 +214,15 @@
     <span class="step-no">PART 2</span>
     <h2>役割分担（ここが一番大事）</h2>
     <p class="lead">担当者が主体的に動く。担当者ができないこと（お金の決裁・契約条件の確定）をtaikiが担う。</p>
+
+    <div class="rel">
+      <div class="node"><h5>顧客（一般企業）</h5><p>運用を発注し<br>料金を支払う</p></div>
+      <div class="link"><b>←→</b><span>営業で獲得<br>／入金</span></div>
+      <div class="node center"><h5>Camy's（自社）</h5><p>担当者＝営業の主役<br>taikiは条件決め・FB</p></div>
+      <div class="link"><b>→</b><span>運用を渡す<br>／20%乗せ</span></div>
+      <div class="node"><h5>パートナー</h5><p>制作・運用を<br>担当する</p></div>
+    </div>
+    <p class="rel-note">営業はCamy's・運用はパートナー。顧客からの入金にCamy'sが仲介料20%を乗せ、差額が取り分になる。</p>
 
     <div class="roles">
       <div class="role boss"><span class="chip">taiki</span><div>契約内容（プラン・金額）を決めて担当者に伝える／提携の最終可否を判断／担当者へのフィードバック。提携先とは直接やり取りせず、表に立つのは担当者。</div></div>
